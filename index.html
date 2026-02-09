@@ -29,8 +29,7 @@
 	<!-- Tab content -->
 	<div id="Customer" class="tabcontent">
 		<h3>Customer Information</h3>
-		<p>Tell us a bit about you.</p>
-		Choose a Category:
+		Please specify your food preferences:
 		<select id="dietSelect" name="dietSelect" onchange="populateListProductChoices(this.id, 'displayProduct')">
 			<option value="None">None</option>
 			<option value="Vegetarian">Vegetarian</option>
@@ -46,7 +45,7 @@
 
 	<div id="Products" class="tabcontent">
 		<h3>Your targeted products</h3>
-		<p>We preselected products based on your restrictions.</p>
+		<p>We preselected products based on your preferences.</p>
 
 		<!-- Filter Summary -->
 		<div id="filterSummary" class="filter-summary">
@@ -54,7 +53,7 @@
 			<span id="productCount" class="product-count"></span>
 		</div>
 
-		Choose items to buy:
+		Available products:
 		<div class="container">
 			<div id="sideBar">
 				<p id="priceRangeTitle"><strong>Price ranges</strong></p>
@@ -76,15 +75,11 @@
 			<div id="displayProduct"></div>
 		</div>
 
-
-		<button id="addCart" type="button" class="block" onclick="selectedItems()">
-			Add selected items to cart.
-		</button>
 	</div>
 
 	<div id="Cart" class="tabcontent">
 		<h3>Cart</h3>
-		<p>Here is your cart.</p>
+		<p>Here is your cart:</p>
 		<div id="displayCart"></div>
 	</div>
 
