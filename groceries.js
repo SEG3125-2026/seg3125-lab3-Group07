@@ -107,12 +107,7 @@ function restrictListProducts(prods, restriction) {
 	}
 
 	return product_names;
-}
-
-function appearanceProds(prods){
-	
-}
-
+} 
 
 
 

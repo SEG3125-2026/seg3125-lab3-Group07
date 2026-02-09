@@ -31,6 +31,30 @@ document.getElementById('BigFont').addEventListener('change', function () {
 });
 
 
+function sortByRange(slct1, slct2){
+
+	var s1 = document.getElementById(slct1);
+	var s2 = document.getElementById(slct2);
+
+	const cards = s2.querySelectorAll('.card');
+	cards.forEach(card => {
+		const price = Number(card.dataset.price);
+		if (s1.value === "noRange"){
+			card.classList.remove('hidden');
+		} else if ((s1.value === "Below5")&&(price<=5)){
+			card.classList.remove('hidden');
+		} else if ((s1.value === "Below10")&&(price<=10)){
+			card.classList.remove('hidden');
+		} else if ((s1.value === "Below20")&&(price<=20)){
+			card.classList.remove('hidden');
+		} else{
+			card.classList.add('hidden');
+		}
+	});
+
+}
+
+
 // generate a checkbox list from a list of products
 // it makes each product name as the label for the checkbox
 
@@ -38,6 +62,7 @@ function populateListProductChoices(slct1, slct2) {
 
 	var s1 = document.getElementById(slct1);
 	var s2 = document.getElementById(slct2);
+	//var s3 = document.getElementById(slct3);
 
 	// s2 represents the <div> in the Products tab, which shows the product list, so we first set it empty
 	s2.innerHTML = "";
@@ -48,6 +73,7 @@ function populateListProductChoices(slct1, slct2) {
 
 	// obtain a reduced list of products based on restrictions
 	var optionArray = restrictListProducts(products, s1.value);
+	//optionArray = sortByRange(optionArray, s3.value);
 
 	// for each item in the array, create a checkbox element, each containing information such as:
 	// <input type="checkbox" name="product" value="Bread">
@@ -61,17 +87,20 @@ function populateListProductChoices(slct1, slct2) {
 		//Create product cards in grid format
 		const card = document.createElement('div');
 		card.className = 'card';
+		card.dataset.price = productObj.price;
 
 		card.innerHTML = `
         <img src="${productObj.img}" alt="${productObj.name}">
         <h3>${productObj.name}</h3>
-        <div class="price">$${productObj.price}</div>
+        <div class="price" >$${productObj.price}</div>
 		<input type="checkbox" name="product" value=${productName}>
         `;
 		s2.appendChild(card);
 		
 	}
 }
+
+
 
 // This function is called when the "Add selected items to cart" button in clicked
 // The purpose is to build the HTML to be displayed (a Paragraph) 
