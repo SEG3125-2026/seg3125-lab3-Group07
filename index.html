@@ -1,88 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	 <!-- This style sheet is taken from  https://www.w3schools.com/howto/howto_js_tabs.asp> -->
+	<!-- This style sheet is taken from  https://www.w3schools.com/howto/howto_js_tabs.asp> -->
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
-  <!-- Adding a tagline -->
+	<!-- Adding a tagline -->
 
-<header class="main-header">
-  <div>
-  <h1>QuickBasket</h1>
-  <p class="tagline">Fresh. Affordable. Delivered.</p>
-  </div>
-  <!-- Tab links, each one with an onclick event associated with it -->
-<div class="tab">
-  <button class="tablinks" onclick="openInfo(event, 'Customer')">Customer</button>
-  <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
-  <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
-</div>
-</header>
-
-
+	<header class="main-header">
+		<div>
+			<h1>QuickBasket</h1>
+			<p class="tagline">Fresh. Affordable. Delivered.</p>
+		</div>
+		<!-- Tab links, each one with an onclick event associated with it -->
+		<div class="tab">
+			<button class="tablinks" onclick="openInfo(event, 'Customer')">Customer</button>
+			<button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
+			<button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+		</div>
+	</header>
 
 
-<!-- Tab content -->
-<div id="Customer" class="tabcontent">
-  <h3>Customer Information</h3>
-  <p>Tell us a bit about you.</p>
-	Choose a Category:
-	<select id="dietSelect" name="dietSelect" onchange="populateListProductChoices(this.id, 'displayProduct')">
-    <option value="None">None</option>
-	  <option value="Vegetarian">Vegetarian</option>
-    <option value="Gluten-free">Gluten-free</option>
-    <option value="Organic">Organic</option>
-	</select>
-
-  <h3> Accessibility </h3>
-  <input type="checkbox" id="BigFont" name="BiggerFont" value="BigFont">
-  <label for="BigFont"> Enable Bigger Font</label><br>
-
-</div>
-
-<div id="Products" class="tabcontent">
-  <h3>Your targeted products</h3>
-  <p>We preselected products based on your restrictions.</p>
-	 Choose items to buy:
-	<div class="container">
-   <div id="sideBar">
-    <p id="priceRangeTitle"><strong>Price ranges</strong></p>
-    <form id="priceRange">
-      <input class="priceChoice" id="noRange" type="radio" name="priceRange" value="noRange" onchange="sortByRange(this.id, 'displayProduct')">
-      <label for="noRange"> None </label>
-      <input class="priceChoice" id="0to5" type="radio" name="priceRange" value="Below5" onchange="sortByRange(this.id, 'displayProduct')">
-      <label for="0to5"> Bellow 5$</label>
-      <input class="priceChoice" id="0to10" type="radio" name="priceRange" value="Below10" onchange="sortByRange(this.id, 'displayProduct')">
-      <label for="0to10"> Bellow 10$</label>
-      <input class="priceChoice" id="0to20" type="radio" name="priceRange" value="Below20" onchange="sortByRange(this.id, 'displayProduct')">
-      <label for="0to20"> Bellow 20$</label>
-    </form>
-   </div>
-   <div id="displayProduct"> Please Specify Your Choices First!!</div>
-  </div>
 
 
-	 <button id="addCart" type="button" class="block" onclick="selectedItems()">
-		Add selected items to cart.
-	</button>
-</div>
+	<!-- Tab content -->
+	<div id="Customer" class="tabcontent">
+		<h3>Customer Information</h3>
+		<p>Tell us a bit about you.</p>
+		Choose a Category:
+		<select id="dietSelect" name="dietSelect" onchange="populateListProductChoices(this.id, 'displayProduct')">
+			<option value="None">None</option>
+			<option value="Vegetarian">Vegetarian</option>
+			<option value="Gluten-free">Gluten-free</option>
+			<option value="Organic">Organic</option>
+		</select>
 
-<div id="Cart" class="tabcontent">
-  <h3>Cart</h3>
-  <p>Here is your cart.</p>
-  <div id="displayCart"></div>
-</div>
+		<h3> Accessibility </h3>
+		<input type="checkbox" id="BigFont" name="BiggerFont" value="BigFont">
+		<label for="BigFont"> Enable Bigger Font</label><br>
 
-<footer>
-  <p style="text-align:center; margin-top:20px;">Website designed by Group 07</p>
-</footer>
+	</div>
+
+	<div id="Products" class="tabcontent">
+		<h3>Your targeted products</h3>
+		<p>We preselected products based on your restrictions.</p>
+
+		<!-- Filter Summary -->
+		<div id="filterSummary" class="filter-summary">
+			<span id="filterText">Showing all products</span>
+			<span id="productCount" class="product-count"></span>
+		</div>
+
+		Choose items to buy:
+		<div class="container">
+			<div id="sideBar">
+				<p id="priceRangeTitle"><strong>Price ranges</strong></p>
+				<form id="priceRange">
+					<input class="priceChoice" id="noRange" type="radio" name="priceRange" value="noRange" checked
+						onchange="sortByRange(this.id, 'displayProduct')">
+					<label for="noRange"> None </label>
+					<input class="priceChoice" id="0to5" type="radio" name="priceRange" value="Below5"
+						onchange="sortByRange(this.id, 'displayProduct')">
+					<label for="0to5"> Bellow 5$</label>
+					<input class="priceChoice" id="0to10" type="radio" name="priceRange" value="Below10"
+						onchange="sortByRange(this.id, 'displayProduct')">
+					<label for="0to10"> Bellow 10$</label>
+					<input class="priceChoice" id="0to20" type="radio" name="priceRange" value="Below20"
+						onchange="sortByRange(this.id, 'displayProduct')">
+					<label for="0to20"> Bellow 20$</label>
+				</form>
+			</div>
+			<div id="displayProduct"></div>
+		</div>
 
 
-<script src="groceries.js"></script>
-<script src="main.js"></script>
+		<button id="addCart" type="button" class="block" onclick="selectedItems()">
+			Add selected items to cart.
+		</button>
+	</div>
+
+	<div id="Cart" class="tabcontent">
+		<h3>Cart</h3>
+		<p>Here is your cart.</p>
+		<div id="displayCart"></div>
+	</div>
+
+	<footer>
+		<p style="text-align:center; margin-top:20px;">Website designed by Group 07</p>
+	</footer>
+
+
+	<script src="groceries.js"></script>
+	<script src="main.js"></script>
 
 </body>
+
 </html>
